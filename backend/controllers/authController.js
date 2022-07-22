@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const createError = require("../utils/error");
 const jwt = require("jsonwebtoken");
+
 //
 const register = async (req, res, next) => {
   try {

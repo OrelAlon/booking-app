@@ -7,8 +7,6 @@ const {
   getHotels,
 } = require("../controllers/hotelController");
 
-const Hotel = require("../models/Hotel");
-
 const router = express.Router();
 
 // Create Hotel
