@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const createError = require("../utils/error");
-
+const jwt = require("jsonwebtoken");
 //
 const register = async (req, res, next) => {
   try {
@@ -34,9 +34,19 @@ const login = async (req, res, next) => {
     if (!isPasswordCorrect)
       return next(createError(400, "Wrong password or username!"));
 
+    const token = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.JWT
+    );
+
     const { password, isAdmin, ...other } = user._doc;
 
-    res.status(200).send({ ...other });
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .send({ ...other });
   } catch (err) {
     next(err);
   }
