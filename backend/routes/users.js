@@ -15,7 +15,7 @@ router.get("/checkauthentication", verifyToken, (req, res, next) => {
 });
 
 // Update User
-router.put("/:id", verifyToken, updateUser);
+router.put("/:id", updateUser);
 
 // Delete User
 router.delete("/:id", deleteUser);

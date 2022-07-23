@@ -47,9 +47,11 @@ const login = async (req, res, next) => {
         httpOnly: true,
       })
       .status(200)
-      .send({ ...other });
+      .send(token);
   } catch (err) {
     next(err);
   }
 };
 module.exports = { register, login };
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDk4ZDQwZTJhOWQ0ZjE3NjhiMzk3ZCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NTg1NjM0NzN9.KJ8imDsM7u9d44qOUOI9Qi6wCvtyOX8aCE62LZfgP90
