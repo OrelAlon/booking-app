@@ -6,12 +6,16 @@ const {
   getUsers,
 } = require("../controllers/UserController");
 
-const User = require("../models/User");
+const verifyToken = require("../utils/verifyToken");
 
 const router = express.Router();
 
+router.get("/checkauthentication", verifyToken, (req, res, next) => {
+  res.send("hello user, you are logged in");
+});
+
 // Update User
-router.put("/:id", updateUser);
+router.put("/:id", verifyToken, updateUser);
 
 // Delete User
 router.delete("/:id", deleteUser);
