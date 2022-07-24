@@ -16,11 +16,74 @@ const createRoom = async (req, res, next) => {
           rooms: savedRoom._id,
         },
       });
-    } catch (error) {}
+    } catch (err) {
+      next(err);
+    }
     res.status(200).json(savedRoom);
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = { createRoom };
+//
+const updateRoom = async (req, res, next) => {
+  try {
+    const updatedRoom = await Room.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedRoom);
+  } catch (err) {
+    next(err);
+  }
+};
+
+//
+const deleteRoom = async (req, res, next) => {
+  const hotelId = req.params.hotelid;
+
+  try {
+    await Room.findByIdAndDelete(req.params.id);
+
+    try {
+      await Hotel.findByIdAndUpdate(hotelId, {
+        $pull: {
+          rooms: req.params._id,
+        },
+      });
+    } catch (err) {
+      next(err);
+    }
+    res.status(200).json("Room  Delete");
+  } catch (err) {
+    next(err);
+  }
+};
+
+//
+const getRoom = async (req, res, next) => {
+  try {
+    const getRoom = await Room.findById(req.params.id);
+
+    res.status(200).json(getRoom);
+  } catch (err) {
+    next(err);
+  }
+};
+
+//
+const getRooms = async (req, res, next) => {
+  try {
+    const getRooms = await Room.find();
+
+    res.status(200).json(getRooms);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { createRoom, updateRoom, deleteRoom, getRoom, getRooms };
