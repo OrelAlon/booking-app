@@ -24,8 +24,7 @@ const register = async (req, res, next) => {
 //
 const login = async (req, res, next) => {
   try {
-    // find user
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ username: req.body.username });
     if (!user) return next(createError(404, "User not found!"));
 
     const isPasswordCorrect = await bcrypt.compare(
@@ -41,17 +40,14 @@ const login = async (req, res, next) => {
     );
 
     const { password, isAdmin, ...other } = user._doc;
-
     res
       .cookie("access_token", token, {
         httpOnly: true,
       })
       .status(200)
-      .send(token);
+      .json({ details: { ...other }, isAdmin });
   } catch (err) {
     next(err);
   }
 };
 module.exports = { register, login };
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDk4ZDQwZTJhOWQ0ZjE3NjhiMzk3ZCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NTg1NjM0NzN9.KJ8imDsM7u9d44qOUOI9Qi6wCvtyOX8aCE62LZfgP90
