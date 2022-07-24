@@ -12,7 +12,7 @@ const { verifyAdmin } = require("../utils/verifyToken");
 const router = express.Router();
 
 // Create Hotel
-router.post("/", verifyAdmin, createHotel);
+router.post("/", createHotel);
 
 // Update Hotel
 router.put("/:id", verifyAdmin, updateHotel);

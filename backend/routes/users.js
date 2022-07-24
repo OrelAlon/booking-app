@@ -6,11 +6,7 @@ const {
   getUsers,
 } = require("../controllers/UserController");
 
-const {
-  verifyToken,
-  verifyUser,
-  verifyAdmin,
-} = require("../utils/verifyToken");
+const { verifyUser, verifyAdmin } = require("../utils/verifyToken");
 
 const router = express.Router();
 
