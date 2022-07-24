@@ -18,12 +18,12 @@ router.post("/", verifyAdmin, createHotel);
 router.put("/:id", verifyAdmin, updateHotel);
 
 // Delete Hotel
-router.delete("/:id", deleteHotel);
+router.delete("/:id", verifyAdmin, deleteHotel);
 
 // Get Hotel
 router.get("/:id", getHotel);
 
 // Get All Hotels
-router.get("/", getHotels);
+router.get("/", verifyAdmin, getHotels);
 
 module.exports = router;
