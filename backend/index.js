@@ -27,9 +27,9 @@ mongoose.connection.on("disconnected", () => {
   console.log("MongoDB disconnected!");
 });
 
-app.get("/", (req, res) => {
-  res.json("hellddo");
-});
+// app.get("/", (req, res) => {
+//   res.json("hello");
+// });
 
 // middlewares
 app.use(express.json());
