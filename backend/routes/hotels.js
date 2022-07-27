@@ -22,7 +22,7 @@ router.put("/:id", verifyAdmin, updateHotel);
 router.delete("/:id", verifyAdmin, deleteHotel);
 
 // Get Hotel
-router.get("/:id", getHotel);
+router.get("/find/:id", getHotel);
 
 // Get All Hotels
 router.get("/", verifyAdmin, getHotels);

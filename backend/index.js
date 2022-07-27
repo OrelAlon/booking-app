@@ -31,7 +31,7 @@ mongoose.connection.on("disconnected", () => {
 //   res.json("hello");
 // });
 
-// middlewares
+// // middlewares
 app.use(express.json());
 app.use(cookieParser());
 
@@ -51,3 +51,5 @@ app.listen(8000, () => {
   connect();
   console.log("Connected to backend !!");
 });
+
+// for concurrently ==> npm run dev ==> from main folder
