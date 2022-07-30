@@ -13,13 +13,14 @@ import "./list.css";
 const List = () => {
   const location = useLocation();
   // const [destination, setDestination] = useState(location.state.destination);
-  const [dates, setDates] = useState(location.state.dates);
+  // const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
-  const [options, setOptions] = useState(location.state.options);
+  // const [options, setOptions] = useState(location.state.options);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
-  console.log(location);
-  console.log(location.state);
+  // console.log(location);
+  // console.log(location.state);
+  // console.log(location.state.destination);
   const { data, loading, error, reFetch } = useFetch(
     `/hotels?&min=${min || 0}&max=${max || 999}`
   );
@@ -40,7 +41,7 @@ const List = () => {
               {/* <label>Destination</label>
               <input placeholder={destination} type='text' /> */}
             </div>
-            <div className='lsItem'>
+            {/* <div className='lsItem'>
               <label>Check-in Date</label>
               <span onClick={() => setOpenDate(!openDate)}>{`${format(
                 dates[0].startDate,
@@ -53,7 +54,7 @@ const List = () => {
                   ranges={dates}
                 />
               )}
-            </div>
+            </div> */}
             <div className='lsItem'>
               <label>Options</label>
               <div className='lsOptions'>
@@ -83,7 +84,7 @@ const List = () => {
                     type='number'
                     min={1}
                     className='lsOptionInput'
-                    placeholder={options.adult}
+                    // placeholder={options.adult}
                   />
                 </div>
                 <div className='lsOptionItem'>
@@ -92,7 +93,7 @@ const List = () => {
                     type='number'
                     min={0}
                     className='lsOptionInput'
-                    placeholder={options.children}
+                    // placeholder={options.children}
                   />
                 </div>
                 <div className='lsOptionItem'>
@@ -101,7 +102,7 @@ const List = () => {
                     type='number'
                     min={1}
                     className='lsOptionInput'
-                    placeholder={options.room}
+                    // placeholder={options.room}
                   />
                 </div>
               </div>
