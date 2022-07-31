@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SearchContext } from "../../context/SearchContext";
+
 import { useLocation } from "react-router-dom";
 
 import useFetch from "../../hooks/useFetch";
@@ -20,11 +22,22 @@ import "./hotel.css";
 const Hotel = () => {
   const location = useLocation();
   const hotelId = location.pathname.split("/")[2];
-  console.log(hotelId);
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
 
   const { data, loading, error, reFetch } = useFetch(`/hotels/find/${hotelId}`);
+
+  const { dates } = useContext(SearchContext);
+  console.log(dates);
+
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+
+  function dayDifference(date1, date2) {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+    return diffDays;
+  }
+  console.log(dayDifference(dates[0].endData, dates[0].startDate));
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
