@@ -18,9 +18,10 @@ const List = () => {
   // const [options, setOptions] = useState(location.state.options);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
-  // console.log(location);
-  // console.log(location.state);
-  // console.log(location.state.destination);
+
+  console.log(location);
+  console.log(location.state);
+
   const { data, loading, error, reFetch } = useFetch(
     `/hotels?&min=${min || 0}&max=${max || 999}`
   );
