@@ -1,20 +1,45 @@
 import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 import useFetch from "../../hooks/useFetch";
-import SearchContext from "../../context/SearchContext";
+import { SearchContext } from "../../context/SearchContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark, faList } from "@fortawesome/free-solid-svg-icons";
 
 import "./reserve.css";
-import { AuthContext } from "../../context/AuthContext";
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelecetedRooms] = useState([]);
 
   const { data } = useFetch(`/hotels/room/${hotelId}`);
-  const { dates } = useContext(SearchC);
+  const { dates } = useContext(SearchContext);
+
+  const getDatesInRange = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    const date = new Date(start.getTime());
+
+    const dates = [];
+
+    while (date <= end) {
+      dates.push(new Date(date).getTime());
+      date.setDate(date.getDate() + 1);
+    }
+
+    return dates;
+  };
+  const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
+
+  const isAvailable = (roomNumber) => {
+    const isFound = roomNumber.unavailableDates.some((date) =>
+      alldates.includes(new Date(date).getTime())
+    );
+
+    return !isFound;
+  };
+
   const handleClick = async () => {
-    console.log("click");
     // try {
     //   await Promise.all(
     //     selectedRooms.map((roomId) => {
@@ -67,7 +92,7 @@ const Reserve = ({ setOpen, hotelId }) => {
                     type='checkbox'
                     value={roomNumber._id}
                     onChange={handleSelect}
-                    // disabled={!isAvailable(roomNumber)}
+                    disabled={!isAvailable(roomNumber)}
                   />
                 </div>
               ))}
