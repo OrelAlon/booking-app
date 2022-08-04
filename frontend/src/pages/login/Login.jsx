@@ -30,9 +30,15 @@ const Login = () => {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   };
+
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
   return (
     <div className='login'>
       <div className='lContainer'>
+        User Name:
         <input
           type='text'
           placeholder='username'
@@ -40,6 +46,7 @@ const Login = () => {
           onChange={handleChange}
           className='lInput'
         />
+        Password::
         <input
           type='password'
           placeholder='password'
@@ -49,6 +56,9 @@ const Login = () => {
         />
         <button disabled={loading} onClick={handleClick} className='lButton'>
           Login
+        </button>
+        <button disabled={loading} onClick={handleRegister} className='lButton'>
+          Register
         </button>
         {error && <span>{error.message}</span>}
       </div>

@@ -8,6 +8,7 @@ import "./register.css";
 const Register = () => {
   const [credentials, setCredentials] = useState({
     username: undefined,
+    email: undefined,
     password: undefined,
   });
 
@@ -21,25 +22,37 @@ const Register = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("/auth/login", credentials);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-      navigate("/");
+      const res = await axios.post("/auth/register", credentials);
+      navigate("/login");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   };
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
   return (
     <div className='login'>
       <div className='lContainer'>
+        User Name:
         <input
           type='text'
-          placeholder='username'
+          placeholder='user name'
           id='username'
           onChange={handleChange}
           className='lInput'
         />
+        Email:
+        <input
+          type='email'
+          placeholder='email'
+          id='email'
+          onChange={handleChange}
+          className='lInput'
+        />
+        Password:
         <input
           type='password'
           placeholder='password'
@@ -48,7 +61,10 @@ const Register = () => {
           className='lInput'
         />
         <button disabled={loading} onClick={handleClick} className='lButton'>
-          Login
+          Register
+        </button>
+        <button disabled={loading} onClick={handleLogin} className='lButton'>
+          Login to your account
         </button>
         {error && <span>{error.message}</span>}
       </div>
