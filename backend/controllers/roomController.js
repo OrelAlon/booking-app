@@ -58,6 +58,7 @@ const updateRoomAvailability = async (req, res, next) => {
     next(err);
   }
 };
+
 //
 const deleteRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
