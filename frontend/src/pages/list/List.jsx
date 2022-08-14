@@ -9,7 +9,7 @@ import Header from "../../components/header/Header";
 import SearchItem from "../../components/searchItem/SearchItem";
 
 import "./list.css";
-
+// f12
 const List = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
