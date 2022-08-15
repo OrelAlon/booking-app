@@ -16,7 +16,7 @@ const Navbar = () => {
     <div className='navbar'>
       <div className='navContainer'>
         <Link to='/' style={{ color: "inherit", textDecoration: "none" }}>
-          <span className='logo'>DemoBooking</span>
+          <span className='logo'>Booking.orel</span>
         </Link>
         {user ? (
           user.username
