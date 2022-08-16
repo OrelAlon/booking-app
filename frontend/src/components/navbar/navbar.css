@@ -26,3 +26,10 @@
   cursor: pointer;
   color: #003580;
 }
+
+@media only screen and (max-width: 1000px) {
+  .navbar {
+    width: 100%;
+    font-size: 15px;
+  }
+}
