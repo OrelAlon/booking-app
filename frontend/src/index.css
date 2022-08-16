@@ -9,3 +9,10 @@ body {
 code {
   font-family: "Roboto", sans-serif;
 }
+@media only screen and (max-width: 1000px) {
+  body,
+  html {
+    max-width: 60px;
+    font-size: 16px;
+  }
+}
