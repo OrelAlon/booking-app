@@ -108,7 +108,7 @@ const List = () => {
             <button onClick={handleClick}>Search</button>
           </div>
           <div className='listResult'>
-            {loading ? (
+            {/* {loading ? (
               "loading"
             ) : (
               <>
@@ -116,7 +116,7 @@ const List = () => {
                   <SearchItem item={item} key={item._id} />
                 ))}
               </>
-            )}
+            )} */}
           </div>
         </div>
       </div>
