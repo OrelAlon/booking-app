@@ -141,7 +141,7 @@ const Hotel = () => {
               free airport taxi
             </span>
             <div className='hotelImages'>
-              {/* {photos.map((photo, i) => (
+              {photos.map((photo, i) => (
                 <div className='hotelImgWrapper' key={i}>
                   <img
                     onClick={() => handleOpen(i)}
@@ -150,7 +150,7 @@ const Hotel = () => {
                     className='hotelImg'
                   />
                 </div>
-              ))} */}
+              ))}
             </div>
             <div className='hotelDetails'>
               <div className='hotelDetailsTexts'>
