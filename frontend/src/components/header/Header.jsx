@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
+import useFetch from "../../hooks/useFetch";
 
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -40,6 +41,11 @@ const Header = ({ type }) => {
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
+  const { data } = useFetch(`/hotels/`);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -101,9 +107,10 @@ const Header = ({ type }) => {
                   type='text'
                   placeholder='Where are you going?'
                   className='headerSearchInput'
-                  onChange={(e) => setDestination(e.target.value)}
+                  onChange={(e) => setDestination(e.target.value.toLowerCase())}
                 />
               </div>
+
               <div className='headerSearchItem'>
                 <FontAwesomeIcon icon={faCalendarDays} className='headerIcon' />
                 <span
@@ -204,6 +211,13 @@ const Header = ({ type }) => {
                 </button>
               </div>
             </div>
+            {/* {data.map((value, key) => {
+              return (
+                <a key={data._id} className='dataItem' target='_blank'>
+                  <h2>{value.city} </h2>
+                </a>
+              );
+            })} */}
           </>
         )}
       </div>

@@ -28,10 +28,6 @@ mongoose.connection.on("disconnected", () => {
   console.log("MongoDB disconnected!");
 });
 
-// app.get("/", (req, res) => {
-//   res.json("hello");
-// });
-
 // // middlewares
 app.use(express.json());
 app.use(cookieParser());
@@ -41,7 +37,7 @@ app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 
-// Serve frontend
+// Serve frontend => for Heroku
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
@@ -62,6 +58,7 @@ app.use((err, req, res, next) => {
 });
 
 // connect to backend
+// process env for Heroku
 app.listen(process.env.PORT || 8000, () => {
   connect();
   console.log("Connected to backend !!");

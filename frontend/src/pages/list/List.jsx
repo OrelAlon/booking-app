@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import useFetch from "../../hooks/useFetch";
@@ -22,6 +22,10 @@ const List = () => {
   const { data, loading, error, reFetch } = useFetch(
     `/hotels/?city=${destination}&min=${min || 0}&max=${max || 999}`
   );
+  useEffect(() => {
+    console.log(data);
+    console.log(data);
+  }, [data]);
 
   const handleClick = () => {
     reFetch();
@@ -108,7 +112,7 @@ const List = () => {
             <button onClick={handleClick}>Search</button>
           </div>
           <div className='listResult'>
-            {/* {loading ? (
+            {loading ? (
               "loading"
             ) : (
               <>
@@ -116,7 +120,7 @@ const List = () => {
                   <SearchItem item={item} key={item._id} />
                 ))}
               </>
-            )} */}
+            )}
           </div>
         </div>
       </div>
