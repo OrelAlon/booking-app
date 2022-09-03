@@ -20,3 +20,7 @@ function App() {
 }
 
 export default App;
+
+// # FAST_REFRESH=false
+// # CHOKIDAR_USEPOLLING=true
+// # WATCHPACK_POLLING=true
